@@ -2,11 +2,11 @@ import React from 'react'
 
 function Footer() {
   return (
-    <footer className="page-footer grey darken-2 footer">
-    <div className="footer-copyright">
+    <footer className="page-footer cyan darken-3 footer">
+    <div className="footer-copyright ">
       <div className="container">
       © 2022 Copyright Text
-      <a className="grey-text text-lighten-4 right" href="https://github.com/gerargef/react-recipes">Repo</a>
+      <a className="white-text right" href="https://github.com/gerargef/react-recipes">Repo</a>
       </div>
     </div>
   </footer>

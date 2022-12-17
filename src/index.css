@@ -7,7 +7,48 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+nav {
+  padding: 0 2rem;
+}
+.video {
+  width: 600px;
+  height: 400px;
+}
+img, .video {
+  max-width: 100%;
+}
+
+.content {
+  min-height: calc(100vh - 70px - 64px);
+}
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+  gap: 1rem;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+}
+.card-content {
+  flex-grow: 1;
+}
+.recipe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.recipe-video {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.go-back-button {
+  margin: 1rem;
+}
+.search-button {
+  position: absolute;
+  top:0;
+  right: 0;
 }
