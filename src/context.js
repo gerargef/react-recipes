@@ -6,10 +6,15 @@ export const  AppContext = createContext();
 const initialState = {
     categories : [],
     filteredCategories : [],
+    areas: [],
+    filteredAreas: [],
+    ingredients: [],
+    filteredIngredients : [],
     isLoading: true,
     currentCategoryMeals : [] ,
     filteredMeals : [],
     currentRecipeData: [],
+    favoriteRecipes: [],
 }
 
 export const ContextProvider = ({children}) => {
@@ -29,11 +34,35 @@ export const ContextProvider = ({children}) => {
     value.setCurrentRecipeData= (data) => {
         dispatch({type: 'SET_CURRENT_RECIPE_DATA', payload: {data:data}});
     }
+    value.setAreas = (data) => {
+        dispatch({type: 'SET_AREAS', payload: {data:data}})
+    }
+    value.setFilteredAreas = (data) => {
+        dispatch({type: 'SET_FILTERED_AREAS', payload: {data:data}})
+    }
+    value.setIngredients = (data) => {
+        dispatch({type: 'SET_INGREDIENTS', payload: {data:data}})
+    }
+    value.setFilteredIngredients = (data) => {
+        dispatch({type: 'SET_FILTERED_INGREDIENTS', payload: {data:data}})
+    }
+    value.setFavoriteRecipes = (data) => {
+        dispatch({type: 'SET_FAVORITE_RECIPES', payload: {data:data}})
+    }
     value.searchCategories = ( str) => {
         dispatch({type: 'SEARCH_CATEGORIES', payload: { str: str}})
     }
     value.searchMeals = ( str) => {
         dispatch({type: 'SEARCH_MEALS', payload: { str: str}})
+    }
+    value.searchAreas = ( str) => {
+        dispatch({type: 'SEARCH_AREAS', payload: { str: str}})
+    }
+    value.searchIngredients = ( str) => {
+        dispatch({type: 'SEARCH_INGREDIENTS', payload: { str: str}})
+    }
+    value.deleteRecipe = (id) => {
+        dispatch({type: 'DELETE_RECIPE', payload: {id:id}})
     }
     return(
         <AppContext.Provider value={value}>

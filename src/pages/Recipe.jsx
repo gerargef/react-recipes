@@ -4,15 +4,29 @@ import { getFullMealDetails } from "../API";
 import { AppContext } from "../context";
 
 function Recipe() {
-  const { currentRecipeData, setCurrentRecipeData } = useContext(AppContext);
+  const { currentRecipeData, setCurrentRecipeData, favoriteRecipes, setFavoriteRecipes } = useContext(AppContext);
   const { id } = useParams();
   const navigate = useNavigate();
+  const setNewFavoriteRecipe = () => {
+    setFavoriteRecipes([...favoriteRecipes, {
+      id: currentRecipeData.idMeal,
+      title: currentRecipeData.strMeal,
+    }])
+    // localStorage.setItem("favoriteRecipes", JSON.stringify(favoriteRecipes));
+
+  }
   useEffect(() => {
     getFullMealDetails(id).then((data) => setCurrentRecipeData(data.meals[0]));
   }, [id]);
   return (
     <div className="recipe">
-      <h1 className="center">{currentRecipeData.strMeal}</h1>
+      <h1 className="center">{currentRecipeData.strMeal} </h1>
+      <button
+        className="material-icons medium favorite-star btn"
+        onClick={setNewFavoriteRecipe}
+      >
+        star
+      </button>
       <img src={currentRecipeData.strMealThumb} alt="" />
       <h5> Category : {currentRecipeData.strCategory}</h5>
       {currentRecipeData.strArea ? (
@@ -32,14 +46,11 @@ function Recipe() {
               return (
                 <tr key={key}>
                   <td>{currentRecipeData[key]}</td>
-                  <td>
-                    {currentRecipeData[`strMeasure${key.slice(13)}`]}
-                  </td>
+                  <td>{currentRecipeData[`strMeasure${key.slice(13)}`]}</td>
                 </tr>
               );
             }
           })}
-
         </tbody>
       </table>
       <div className="recipe-video row">
@@ -55,7 +66,10 @@ function Recipe() {
           />
         ) : null}
       </div>
-      <button className="btn cyan darken-1 row go-back-button" onClick={() => navigate(`/category/${currentRecipeData.strCategory}`)}>
+      <button
+        className="btn cyan darken-1 row go-back-button"
+        onClick={() => navigate(-1)}
+      >
         Go Back
       </button>
     </div>
